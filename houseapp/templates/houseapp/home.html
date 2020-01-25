@@ -1,56 +1,98 @@
 {% extends "houseapp/base.html" %} {% block content %}
-    <main role="main" class="container">
-        <div class="row">
-            <div class="col-md-8">
-                    <div class="content-section">
-                        <div class="column">
-                            <div>
-                                <h2>Tasks
-                                    <a class="btn btn-outline-primary" style="float: right" href="{% url 'tasks'%}">Edit</a>
-                                </h2>
-                            </div>
-                            <div>
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        Tasks
-                                    </li>
-                                </ul>
-
-                            </div>
-                        </div>
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="content-section">
+                <div class="column">
+                    <div>
+                        <h2>Tasks
+                            <a class="btn btn-outline-primary" style="float: right" href="{% url 'tasks'%}">Edit</a>
+                        </h2>
                     </div>
+                    <div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Task</th>
+                                    <th scope="col">Member</th>
+                                    <th scope="col">Complete?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">
+                                        Shovel Snow
+                                    </th>
+                                    <td>Will</td>
+                                    <td>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                            <label class="custom-control-label" for="customCheck1"></label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        Shovel Snow
+                                    </th>
+                                    <td>Will</td>
+                                    <td>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                            <label class="custom-control-label" for="customCheck1"></label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        Shovel Snow
+                                    </th>
+                                    <td>Will</td>
+                                    <td>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                            <label class="custom-control-label" for="customCheck1"></label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                    <div class="content-section">
-                        <div class="column">
-                            <div>
-                                <h2>Notifications
-                                    <a class="btn btn-outline-primary" style="float: right" href="#">Edit</a>
-                                </h2>
-                            </div>
-                            <div>
-                                <ul class="list-group">
-                                    <li class="list-group-item">Not: 1</li>
-                                </ul>
-
-                            </div>
-                        </div>
                     </div>
-
-
+                </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="content-section">
-                    <h3>Messages</h3>
-                    <p class='text-muted'>House messages.
+            <div class="content-section">
+                <div class="column">
+                    <div>
+                        <h2>Notifications
+                            <a class="btn btn-outline-primary" style="float: right" href="#">Edit</a>
+                        </h2>
+                    </div>
+                    <div>
+                        <ul class="list-group">
+                            <li class="list-group-item">Not: 1</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="content-section">
+                <h3>Messages</h3>
+                <p class='text-muted'>House messages.
                     <ul class="list-group">
 
                     </ul>
-                    </p>
-                </div>
+                </p>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
 
 {% endblock content %}
