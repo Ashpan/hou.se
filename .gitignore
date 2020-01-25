@@ -1,6 +1,8 @@
 *.sqlite3
 *.pyc
 
+
+
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
@@ -34,8 +36,10 @@
 # .idea/artifacts
 # .idea/compiler.xml
 # .idea/jarRepositories.xml
-# .idea/modules.xml
-# .idea/*.iml
+.idea/modules.xml
+.idea/*.iml
+.idea/misc.xml
+.idea/workspace.xml
 # .idea/modules
 # *.iml
 # *.ipr
