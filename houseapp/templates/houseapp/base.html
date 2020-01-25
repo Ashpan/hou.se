@@ -30,14 +30,13 @@
           </div>
           <!-- Navbar Right Side -->
           <div class="navbar-nav">
-            <a class="nav-item nav-link" href="#">User Profile</a>
             <a class="nav-item nav-link" href="{% url 'house'%}">House Settings</a>
               {%  block user %}
               {% if user.is_authenticated %}
-              Hi {{ user.username }}!
-              <p><a class="nav-item nav-link" href="{% url 'logout' %}">logout</a></p>
+              <p><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></p>
+              <p class="nav-item nav-link active" style="border: darkred ">Hi {{ user.username }}!</p>
               {% else %}
-              <a class="nav-item nav-link" href="{% url 'login' %}">login</a>
+              <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
               <p class="nav-item nav-link active" style="border: darkred ">You are not logged in</p>
               {% endif %}
               {% endblock %}
@@ -50,7 +49,6 @@
   </header>
 
     <main role="main" class="container">
-      <div class="col-md-12">
             {% block content %}{% endblock %}
       </div>
     </main>
