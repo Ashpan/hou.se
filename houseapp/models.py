@@ -3,6 +3,7 @@ from datetime import date
 from django.db import models
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class House(models.Model):
@@ -17,5 +18,8 @@ class Task(models.Model):
     due_date = models.DateField(default=date.today())
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
 
 
