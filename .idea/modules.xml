@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$USER_HOME$/django_project/.idea/django_project.iml" filepath="$USER_HOME$/django_project/.idea/django_project.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/hou.se.iml" filepath="$PROJECT_DIR$/.idea/hou.se.iml" />
     </modules>
   </component>
