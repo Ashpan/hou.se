@@ -1,5 +1,6 @@
 {% extends "houseapp/base.html" %}
 {% block content %}
+
     {% for task in tasks %}
         <article class="media content-section">
             <div class="media-body">
@@ -10,8 +11,8 @@
                 </div>
             </div>
         </article>
-
     {% endfor %}
+
     <main role="main" class="container">
         <div class="row">
             <div class="col-md-8">
