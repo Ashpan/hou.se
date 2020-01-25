@@ -24,8 +24,9 @@
                         <thead>
                         <tr>
                             <th scope="col">Member</th>
-                            <th scope="col"></th>
-                            <th scope="col">Complete?</th>
+                            <th scope="col">Due</th>
+                            <th scope="col">Task</th>
+                            <th scope="col">Status</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -34,6 +35,14 @@
                                 <td class="mr-2" href="#">{{ task.user }}</td>
                                 <td class="text-muted">{{ task.due_date|date:"F d, Y" }}</td>
                                 <td><a class="article-title" href="#">{{ task.title }}</a></td>
+
+                                <td>
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck3">
+                                        <label class="custom-control-label" for="customCheck3"></label>
+                                    </div>
+                                </td>
+
                             </tr>
                         {% endfor %}
 
@@ -42,37 +51,7 @@
                                 Shovel Snow
                             </th>
                             <td>Will</td>
-                            <td>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                    <label class="custom-control-label" for="customCheck1"></label>
-                                </div>
-                            </td>
-                        </tr>
 
-                        <tr>
-                            <th scope="row">
-                                Shovel Snow
-                            </th>
-                            <td>Will</td>
-                            <td>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                    <label class="custom-control-label" for="customCheck2"></label>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">
-                                Shovel Snow
-                            </th>
-                            <td>Will</td>
-                            <td>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                    <label class="custom-control-label" for="customCheck3"></label>
-                                </div>
-                            </td>
                         </tr>
                         </tbody>
                     </table>
