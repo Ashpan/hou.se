@@ -1,16 +1,7 @@
 {% extends "houseapp/base.html" %}
 {% block content %}
-<main role="main" class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="content-section">
-                <div class="column">
-                    <div>
-                        <h2>Tasks
-                            <a class="btn btn-outline-primary" style="float: right" href="{% url 'tasks'%}">Edit</a>
-                        </h2>
     {% for task in tasks %}
-        <article class="media content-section">
+        <article class=" media content-section">
             <div class="media-body">
                 <div class=article-metadata">
                     <a class="mr-2" href="#">{{ task.user }}</a>
@@ -19,8 +10,8 @@
                 </div>
             </div>
         </article>
-
     {% endfor %}
+
     <main role="main" class="container">
         <div class="row">
             <div class="col-md-8">
