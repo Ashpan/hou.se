@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.conf.urls import url
-from django.urls import path, include # new
-from django.views.generic.base import TemplateView # new
+from django.urls import path, include  # new
+from django.views.generic.base import TemplateView  # new
 
 
 urlpatterns = [
