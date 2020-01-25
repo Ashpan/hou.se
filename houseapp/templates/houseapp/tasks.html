@@ -1,14 +1,42 @@
 {% extends "houseapp/base.html" %} {% block content %}
 <article class="media content-section">
   <div class="col-md-8">
-    <div class="article-metadata">
+    <div>
       <h1>Tasks</h1>
     </div>
     <ul class="list-group">
       <li class="list-group-item">
         Task 1
-        <button type="button" class="btn btn-outline-primary">Edit</button>
-        <button type="button" class="btn btn-outline-danger">Remove</button>
+        <a
+          class="btn btn-outline-danger"
+          style="float: right;margin-left:10px"
+          href="#"
+          >Remove</a
+        >
+        <a class="btn btn-outline-primary" style="float: right" href="#"
+          >Edit</a
+        >
+      </li>
+    </ul>
+  </div>
+</article>
+<article class="media content-section">
+  <div class="col-md-8">
+    <div>
+      <h1>Notifications</h1>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item">
+        Task 1
+        <a
+          class="btn btn-outline-danger"
+          style="float: right;margin-left:10px"
+          href="#"
+          >Remove</a
+        >
+        <a class="btn btn-outline-primary" style="float: right" href="#"
+          >Edit</a
+        >
       </li>
     </ul>
   </div>
