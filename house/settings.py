@@ -86,7 +86,7 @@ DATABASES = {
 
         # GCP DB
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'houseapp_db',
+        'NAME': 'houseapp_db_two',
         'USER': 'postgres',
         'PASSWORD': 'deltahackshouseapp007',
         # For MySQL, set 'PORT': '3306' instead of the following. Any Cloud

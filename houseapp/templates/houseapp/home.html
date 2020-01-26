@@ -25,8 +25,8 @@
                         </thead>
                         <tbody>
                             {% for task in tasks %}
-                            <tr>
-                                <td class="mr-2">{{ task.user }}</td>
+                                <tr>
+                                    <td class="mr-2">{{ task.user }}</td>
 
                                 <td class="text-muted">{{ task.due_date|date:"F d, Y" }}</td>
                                 <td>{{ task.title }}</td>
@@ -43,19 +43,18 @@
                     </table>
 
                 </div>
-            </div>
-            <hr>
-            <div class="content-section" style="background-color: transparent">
-                <div class="column">
-                    <div>
-                        <h2>Notifications
-                            <a class="btn btn-outline-primary" style="float: right" href="{% url 'tasks' %}">Edit</a>
-                        </h2>
-                    </div>
-                    <div>
-                        <ul class="list-group">
-                            <li class="list-group-item" style="background-color: transparent">Not: 1</li>
-                        </ul>
+                <hr>
+                <div class="content-section" style="background-color: transparent">
+                    <div class="column">
+                        <div>
+                            <h2>Notifications
+                                <a class="btn btn-outline-primary" style="float: right" href="#">Edit</a>
+                            </h2>
+                        </div>
+                        <div>
+                            <ul class="list-group">
+                                <li class="list-group-item" style="background-color: transparent">Not: 1</li>
+                            </ul>
 
                     </div>
                 </div>
@@ -64,24 +63,30 @@
         </div>
 
 
-        <div class="col-md-4">
-            <div class="content-section" style="background-color: transparent">
-                <h3>Messages</h3>
+                    <ul class="list-group">
+                        {% for message in messages %}
+                            <li>
+                                <p>{{ message.content }}</p>
+                                <p style="color: #b00501">{{ message.author }}
+                                    - {{ message.timestamp|date:"F d | g:ia" }}</p>
+                            </li>
+                        {% endfor %}
 
+                        <form method="post">
+                            <div class="input-group">
+                                <textarea class="form-control" aria-label="message" name="message-text"></textarea>
+                                <div class="input-group-prepend">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-dark">SEND</button>
+                                </div>
+                            </div>
+                        </form>
 
-                <ul class="list-group">
-
-                    {# {% for message in messages reversed%} #}
-                    {#  {% if message == 20 %} #}
-                    {# {% break %} #}
-                    {# {% endif %} #}
-                    {# <p>{{ message }}</p> #}
-                    {# {% endfor %} #}
-
+                </div>
                 </ul>
             </div>
         </div>
-    </div>
+        </div>
 
 </main>
 {% endblock content %}
