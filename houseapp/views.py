@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.http import HttpResponse
 from django.views.generic import ListView, CreateView, DeleteView
 from .models import Task
+from .forms import HouseRegisterForm
 
 
 def house(request):
@@ -33,6 +34,18 @@ class TaskCreateView(CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+<<<<<<< Updated upstream
+=======
+
+def createhouse(request):
+    new_form = HouseRegisterForm(instance=request.user)
+
+    context = {
+        'new_form': new_form,
+    }
+    return render(request, 'registration/CreateHouse.html')
+>>>>>>> Stashed changes
 
 
 class TaskDeleteView(DeleteView):
