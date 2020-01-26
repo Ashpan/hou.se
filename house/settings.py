@@ -77,11 +77,21 @@ WSGI_APPLICATION = 'house.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # LOCAL DB
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'), # local
+
+        # GCP DB
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'houseapp_db',
+        'USER': 'postgres',
+        'PASSWORD': 'deltahackshouseapp007',
+        # For MySQL, set 'PORT': '3306' instead of the following. Any Cloud
+        # SQL Proxy instances running locally must also be set to tcp:3306.
+        'PORT': '5432',
+        'HOST': '34.73.235.9',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
