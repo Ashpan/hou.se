@@ -27,9 +27,9 @@
                             <tbody>
                             {% for task in tasks %}
                                 <tr>
-                                    <td class="mr-2" >{{ task.user }}</td>
+                                    <td class="mr-2">{{ task.user }}</td>
 
-                                    <td class="text-muted">{{ task.due_date|date:"F d, Y" }}</td>
+                                    <td>{{ task.due_date|date:"F d, Y" }}</td>
                                     <td>{{ task.title }}</td>
                                     {% if task.completed %}
                                         <td>✔</td>
@@ -39,28 +39,11 @@
 
                                 </tr>
                             {% endfor %}
-
                             </tbody>
                         </table>
-
                     </div>
                 </div>
-            <hr>
-                <div class="content-section" style="background-color: transparent">
-                    <div class="column">
-                        <div>
-                            <h2>Notifications
-                                <a class="btn btn-outline-primary" style="float: right" href="#">Edit</a>
-                            </h2>
-                        </div>
-                        <div>
-                            <ul class="list-group">
-                                <li class="list-group-item" style="background-color: transparent">Not: 1</li>
-                            </ul>
-
-                        </div>
-                    </div>
-                </div>
+                <hr>
 
             </div>
 
@@ -72,11 +55,11 @@
 
                     <ul class="list-group">
 
-                       {# {% for message in messages reversed%} #}
-                            {#  {% if message == 20 %} #}
-                                {# {% break %} #}
-                            {# {% endif %} #}
-                            {# <p>{{ message }}</p> #}
+                        {# {% for message in messages reversed%} #}
+                        {#  {% if message == 20 %} #}
+                        {# {% break %} #}
+                        {# {% endif %} #}
+                        {# <p>{{ message }}</p> #}
                         {# {% endfor %} #}
 
                     </ul>
