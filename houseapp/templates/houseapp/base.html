@@ -33,14 +33,6 @@
           <!-- Navbar Right Side -->
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="{% url 'home'%}">Home</a>
-            <<<<<<< HEAD {%  block user %} {% if user.is_authenticated %} <a class="nav-item nav-link"
-              href="{% url 'house-create'%}">Create House</a>
-              <a class="nav-item nav-link" href="{% url 'house-join'%}">Join House</a>
-              <a class="nav-item nav-link" href="{% url 'house'%}">House Settings</a>
-              <p><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></p>
-              <p class="nav-item nav-link active" style="color: #373638">Hi {{ user.username }}!</p>
-              {% else %}
-              =======
               <a class="nav-item nav-link" href="{% url 'house-settings'%}">House Settings</a>
               {%  block user %}
               {% if user.is_authenticated %}
@@ -49,8 +41,6 @@
               <p><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></p>
               <p class="nav-item nav-link active" style="color: #373638">Hi {{ user.username }}!</p>
               {% else %}
-
-              >>>>>>> will
               <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
               <a class="nav-item nav-link" href="{% url 'signup' %}">Register</a>
               <p class="nav-item nav-link active" style="border: darkred ">You are not logged in</p>
