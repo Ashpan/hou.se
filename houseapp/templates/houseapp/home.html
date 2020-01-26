@@ -27,7 +27,7 @@
                             <tbody>
                             {% for task in tasks %}
                                 <tr>
-                                    <td class="mr-2" >{{ task.user }}</td>
+                                    <td class="mr-2">{{ task.user }}</td>
 
                                     <td class="text-muted">{{ task.due_date|date:"F d, Y" }}</td>
                                     <td>{{ task.title }}</td>
@@ -45,7 +45,7 @@
 
                     </div>
                 </div>
-            <hr>
+                <hr>
                 <div class="content-section" style="background-color: transparent">
                     <div class="column">
                         <div>
@@ -69,19 +69,29 @@
                 <div class="content-section" style="background-color: transparent">
                     <h3>Messages</h3>
 
-
                     <ul class="list-group">
+                        {% for message in messages %}
+                            <li>
+                                <p>{{ message.content }}</p>
+                                <p style="color: #b00501">{{ message.author }}
+                                    - {{ message.timestamp|date:"F d | g:ia" }}</p>
+                            </li>
+                        {% endfor %}
 
-                       {# {% for message in messages reversed%} #}
-                            {#  {% if message == 20 %} #}
-                                {# {% break %} #}
-                            {# {% endif %} #}
-                            {# <p>{{ message }}</p> #}
-                        {# {% endfor %} #}
+                        <form method="post">
+                            <div class="input-group">
+                                <textarea class="form-control" aria-label="message" name="message-text"></textarea>
+                                <div class="input-group-prepend">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-dark">SEND</button>
+                                </div>
+                            </div>
+                        </form>
 
-                    </ul>
                 </div>
+                </ul>
             </div>
+        </div>
         </div>
 
     </main>

@@ -31,6 +31,12 @@ class Task(models.Model):
 
 class Message(models.Model):
     content = models.CharField(max_length=250)
-    timestamp = models.DateTimeField(timezone.now())
+    timestamp = models.DateTimeField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
+
+class Notification(models.Model):
+    title = models.CharField(max_length=30)
+    content = models.CharField(max_length=250)
+    due_date = models.DateTimeField()
+    house = models.ForeignKey(House, on_delete=models.CASCADE)

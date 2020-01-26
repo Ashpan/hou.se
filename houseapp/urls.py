@@ -15,7 +15,9 @@ urlpatterns = [
     path('tasks/<int:pk>/delete', TaskDeleteView.as_view(), name="task-delete"),
     path('house/create/', views.createhouse, name='house-create'),
     path('house/join/', views.joinhouse, name="house-join"),
+    path('registration/createorjoin/', views.createorjoin, name="house-createorjoin"),
     path('splash/', views.splash, name="splash"),
+    # path('addnote/', views.addnote, name="addnote"),
     # path('house/create/', CreateHouseView.as_view(), name='house-create'),
     # path('house/join/', JoinHouseView.as_view(), name='house-join'),
 ]
