@@ -6,7 +6,7 @@ from .forms import HouseRegisterForm
 
 
 def house(request):
-    return render(request, 'houseapp/house.html')
+    return render(request, 'houseapp/house_settings.html')
 
 
 def tasks(request):
@@ -35,8 +35,6 @@ class TaskCreateView(CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-<<<<<<< Updated upstream
-=======
 
 def createhouse(request):
     new_form = HouseRegisterForm(instance=request.user)
@@ -45,7 +43,6 @@ def createhouse(request):
         'new_form': new_form,
     }
     return render(request, 'registration/CreateHouse.html')
->>>>>>> Stashed changes
 
 
 class TaskDeleteView(DeleteView):
