@@ -21,7 +21,7 @@ def home(request):
 
 
 def house(request):
-    return render(request, 'houseapp/house.html')
+    return render(request, 'houseapp/house_settings.html')
 
 
 def tasks(request):
@@ -49,6 +49,11 @@ class TaskCreateView(CreateView):
     def form_valid(self, form):
         return super().form_valid(form)
 
+def createhouse(request):
+    return render(request, 'registration/CreateHouse.html')
+
+def joinhouse(request):
+    return render(request, 'registration/JoinHouse.html')
 
 class TaskCompleteView(RedirectView):
     pattern_name = 'home'

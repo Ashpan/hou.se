@@ -1,0 +1,12 @@
+{% extends 'houseapp/base.html' %}
+{%load crispy_forms_tags%}
+{% block title %}Create House{% endblock %}
+
+{% block content %}
+
+<form action="/your-name/" method="post">
+    {% csrf_token %}
+    {{new_form|crispy}}
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}
