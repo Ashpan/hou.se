@@ -37,6 +37,7 @@
             {%  block user %}
             {% if user.is_authenticated %}
             <a class="nav-item nav-link" href="{% url 'house-create'%}">Create House</a>
+            <a class="nav-item nav-link" href="{% url 'house-join'%}">Join House</a>
             <a class="nav-item nav-link" href="{% url 'house'%}">House Settings</a>
             <p><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></p>
             <p class="nav-item nav-link active" style="color: #373638">Hi {{ user.username }}!</p>

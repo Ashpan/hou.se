@@ -1,10 +1,11 @@
+from .forms import JoinForm
+from .models import Task, House, Membership
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.http import HttpResponse
 from django.views.generic import ListView, CreateView, DeleteView, RedirectView
 from django.views.generic.edit import FormMixin
-
-from .models import Task, House
+from datetime import date
 
 
 def home(request):
@@ -68,3 +69,23 @@ class CreateHouseView(CreateView):
 
     def form_valid(self, form):
         return super().form_valid(form)
+
+
+class JoinHouseView(CreateView):
+    model = Membership
+    fields = ['house']
+    success_url = '/'
+
+    def post(self, request):
+        inv = request.POST['invite-code-input']
+        house = House.objects.get(invite_code=inv)
+        mem = Membership(person=request.user, house=house,
+                         date_joined=date.today())
+        mem.save()
+
+        return HttpResponseRedirect('/')
+
+# def form_valid(self, form):
+#     if form.request == 'POST':
+#         print(form.request.POST)
+#     return super().form_valid(form)

@@ -1,10 +1,10 @@
 from django import forms
-from django.contrib.auth.models import House
+from django.forms.widgets import TextInput
+from .models import Membership
 
 
-class SignUpForm(UserCreationForm):
+class JoinForm(forms.ModelForm):
 
     class Meta:
-        model = House
-        fields = ('username', 'first_name', 'last_name',
-                  'email', 'password1', 'password2', )
+        model = Membership
+        fields = ('house',)
