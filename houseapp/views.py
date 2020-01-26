@@ -12,6 +12,7 @@ from django.views.generic.edit import FormMixin
 from datetime import date
 
 
+<<<<<<< Updated upstream
 def home(request):
     context = {
         'tasks': Task.objects.all(),
@@ -20,6 +21,8 @@ def home(request):
     return render(request, 'houseapp/home.html', context)
 
 
+=======
+>>>>>>> Stashed changes
 def house(request):
     return render(request, 'houseapp/house_settings.html')
 
@@ -35,9 +38,20 @@ def calendar(request):
     return render(request, 'houseapp/calendar.html')
 
 def home(request):
+<<<<<<< Updated upstream
     context = {
         'tasks': Task.objects.all()
     }
+=======
+    if not request.user.is_authenticated:
+        return render(request, 'houseapp/splash.html')
+    try:
+        user_house = Membership.objects.get(person=request.user).house
+
+        context = {
+            'tasks': Task.objects.filter(user__in=user_house.members.all())
+        }
+>>>>>>> Stashed changes
 
     if request.user.is_authenticated:
         return render(request, 'houseapp/home.html', context)
@@ -56,7 +70,6 @@ class TaskListView(ListView):
             return HttpResponseRedirect('splash')
 
 
-
 class TaskCreateView(CreateView):
     model = Task
     fields = ['title', 'due_date', 'user']
@@ -65,22 +78,28 @@ class TaskCreateView(CreateView):
     def form_valid(self, form):
         return super().form_valid(form)
 
+
 def createhouse(request):
     return render(request, 'registration/CreateHouse.html')
+
 
 def joinhouse(request):
     return render(request, 'registration/JoinHouse.html')
 
+<<<<<<< Updated upstream
 def createorjoin(request):
     return render(request, 'registration/createorjoin.html')
 
+=======
+>>>>>>> Stashed changes
 
 def splash(request):
     if request.user.is_authenticated:
         return render(request, 'houseapp/home.html')
 
     return render(request, 'houseapp/splash.html')
-  
+
+
 class TaskCompleteView(RedirectView):
     pattern_name = 'home'
 
@@ -90,6 +109,7 @@ class TaskCompleteView(RedirectView):
         task.save(update_fields=['completed'])
         print("Completed", task)
         return super().get_redirect_url(*args)
+
 
 class TaskDeleteView(DeleteView):
     model = Task
