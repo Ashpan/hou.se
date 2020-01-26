@@ -4,55 +4,51 @@
 
         <div class="row">
             <div class="col-md-8">
-                <div class="content-section">
+                <div class="content-section" style="background-color: transparent">
                     <div class="column">
                         <div>
                             <h2>Tasks
-                                <a class="btn btn-outline-primary" style="float: right"
+                                <a class="btn btn-outline-primary" style="float: right;"
                                    href="{% url 'tasks' %}">Edit</a>
                             </h2>
                         </div>
-                        <div>
-                            <ul class="list-group">
-                                <li class="list-group-item">Task 1</li>
-                            </ul>
+                    </div>
 
-                        </div>
+                    <div>
+                        <table class="table table-borderless">
+                            <thead>
+                            <tr>
+                                <th scope="col">Member</th>
+                                <th scope="col">Due</th>
+                                <th scope="col">Task</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for task in tasks %}
+                                <tr>
+                                    <td class="mr-2" >{{ task.user }}</td>
+                                    <td class="text-muted">{{ task.due_date|date:"F d, Y" }}</td>
+                                    <td><a class="article-title" >{{ task.title }}</a></td>
+
+                                    <td>
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input"
+                                                   id="{{ task.title }}" name="{{ task.title }}">
+                                            <label class="custom-control-label" for="{{ task.title }}"></label>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+
                     </div>
                 </div>
-                <div>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col">Member</th>
-                            <th scope="col">Due</th>
-                            <th scope="col">Task</th>
-                            <th scope="col">Status</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for task in tasks %}
-                            <tr>
-                                <td class="mr-2" href="#">{{ task.user }}</td>
-                                <td class="text-muted">{{ task.due_date|date:"F d, Y" }}</td>
-                                <td><a class="article-title" href="#">{{ task.title }}</a></td>
-
-                                <td>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input"
-                                               id="{{ task.title }}" name="{{ task.title }}">
-                                        <label class="custom-control-label" for="{{ task.title }}"></label>
-                                    </div>
-                                </td>
-
-                            </tr>
-                        {% endfor %}
-
-                        </tbody>
-                    </table>
-
-                </div>
-                <div class="content-section">
+            <hr>
+                <div class="content-section" style="background-color: transparent">
                     <div class="column">
                         <div>
                             <h2>Notifications
@@ -61,23 +57,31 @@
                         </div>
                         <div>
                             <ul class="list-group">
-                                <li class="list-group-item">Not: 1</li>
+                                <li class="list-group-item" style="background-color: transparent">Not: 1</li>
                             </ul>
 
                         </div>
                     </div>
                 </div>
+
             </div>
 
 
             <div class="col-md-4">
-                <div class="content-section">
+                <div class="content-section" style="background-color: transparent">
                     <h3>Messages</h3>
-                    <p class='text-muted'>House messages.
+
+
                     <ul class="list-group">
 
+                       {# {% for message in messages reversed%} #}
+                            {#  {% if message == 20 %} #}
+                                {# {% break %} #}
+                            {# {% endif %} #}
+                            {# <p>{{ message }}</p> #}
+                        {# {% endfor %} #}
+
                     </ul>
-                    </p>
                 </div>
             </div>
         </div>
