@@ -34,6 +34,8 @@ class TaskCreateView(CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
+def createhouse(request):
+    return render(request, 'registration/CreateHouse.html')
 
 class TaskDeleteView(DeleteView):
     model = Task
