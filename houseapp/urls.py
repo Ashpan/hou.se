@@ -10,4 +10,5 @@ urlpatterns = [
     path('calendar/', views.calendar, name='calendar'),
     path('tasks/<int:pk>/delete', TaskDeleteView.as_view(), name="task-delete"),
     path('createhouse/', views.createhouse, name='createhouse'),
+    path('joinhouse/', views.joinhouse,name="joinhouse"),
 ]

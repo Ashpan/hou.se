@@ -37,6 +37,9 @@ class TaskCreateView(CreateView):
 def createhouse(request):
     return render(request, 'registration/CreateHouse.html')
 
+def joinhouse(request):
+    return render(request, 'registration/JoinHouse.html')
+
 class TaskDeleteView(DeleteView):
     model = Task
     success_url = "/"
