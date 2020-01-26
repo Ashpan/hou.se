@@ -1,18 +1,14 @@
 {% extends 'houseapp/base.html' %}
 
-{% block title %}Create House{% endblock %}
-
+{% block title %}Create House
+{% endblock %}
 {% block content %}
 
-
-
-
-    <form action="/your-name/" method="post" class="col-md-6" >
+    <form action="/your-name/" method="post" class="col-md-6">
         <div>
             <label for="exampleInputEmail1">House ID</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <small id="emailHelp" class="form-text text-muted">If a house exists the ID is under "House
-                Settings"</small>
+            <input class="form-control" id="InputHouseID">
+            <small class="form-text text-muted">If a house exists the ID is under "House Settings"</small>
         </div>
         {% csrf_token %}
         {{ form }}
