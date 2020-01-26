@@ -53,6 +53,7 @@ class JoinHouseView(CreateView):
     fields = ['house']
     success_url = '/'
 
+<<<<<<< Updated upstream
     def form_valid(self, form):
         form.instance.person = self.request.user
         return super().form_valid(form)
@@ -69,6 +70,15 @@ class JoinHouseView(CreateView):
 #     }
 #     return render(request, 'registration/CreateHouse.html', context)
 
+=======
+    def post(self, request):
+        inv = request.POST['invite-code-input']
+        house = House.objects.get(invite_code=inv)
+        mem = Membership(person=request.user, house=house,
+                         date_joined=date.today())
+        mem.save()
+        request.user.house = House.objects.get(invite_code=inv)
+>>>>>>> Stashed changes
 
 def joinhouse(request):
 
