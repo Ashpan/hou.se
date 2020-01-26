@@ -1,6 +1,6 @@
 from .models import Task, House, Membership
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
-from django.views.generic import ListView, CreateView, DeleteView, RedirectView
+from django.views.generic import ListView, CreateView, DeleteView, RedirectView, TemplateView
 from datetime import date
 
 def house(request):
@@ -20,7 +20,7 @@ def calendar(request):
 
 def home(request):
     if not request.user.is_authenticated:
-        return render(request, 'houseapp/splash.html')
+        return HttpResponseRedirect('splash')
 
     try:
         user_house = Membership.objects.get(person=request.user).house
@@ -31,7 +31,7 @@ def home(request):
 
         return render(request, 'houseapp/home.html', context)
     except Exception:
-        return render(request, 'houseapp/membership_form.html')
+        return HttpResponseRedirect('house/join')
 
 
 class TaskListView(ListView):
@@ -59,11 +59,22 @@ def createhouse(request):
     return render(request, 'registration/CreateHouse.html')
 
 def joinhouse(request):
+    if request.method == 'POST':
+        inv = request.POST['InputHouseID']
+        h = None
+        try:
+            h = House.objects.get(invite_code=inv)
+        except Exception:
+            return HttpResponseRedirect('/house/join')
+        mem = Membership(person=request.user, house=h, date_joined=date.today())
+        mem.save()
+        return HttpResponseRedirect('/')
+
     return render(request, 'registration/JoinHouse.html')
 
 def splash(request):
     if request.user.is_authenticated:
-        return render(request, 'houseapp/home.html')
+        return HttpResponseRedirect('/')
 
     return render(request, 'houseapp/splash.html')
   
@@ -82,30 +93,21 @@ class TaskDeleteView(DeleteView):
     success_url = "/"
 
 
-class CreateHouseView(CreateView):
-    model = House
-    fields = ['name', 'address', 'invite_code']
-    success_url = '/'
-
-    def form_valid(self, form):
-        return super().form_valid(form)
-
-
-class JoinHouseView(CreateView):
-    model = Membership
-    fields = ['house']
-    success_url = '/'
-
-    def post(self, request):
-        inv = request.POST['invite-code-input']
-        house = House.objects.get(invite_code=inv)
-        mem = Membership(person=request.user, house=house,
-                         date_joined=date.today())
-        mem.save()
-
-        return HttpResponseRedirect('/')
-
-# def form_valid(self, form):
-#     if form.request == 'POST':
-#         print(form.request.POST)
-#     return super().form_valid(form)
+# class CreateHouseView(CreateView):
+#     model = House
+#     fields = ['name', 'address', 'invite_code']
+#     success_url = '/'
+#
+#     def form_valid(self, form):
+#         return super().form_valid(form)
+#
+#
+# class JoinHouseView(TemplateView):
+#     def post(self, request):
+#         inv = request.POST['invite-code-input']
+#         print(inv)
+#         h = House.objects.get(invite_code=inv)
+#         mem = Membership(person=request.user, house=h, date_joined=date.today())
+#         mem.save()
+#
+#         return HttpResponseRedirect('/tasks/')
