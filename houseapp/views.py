@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.http import HttpResponse
 from django.views.generic import ListView, CreateView, DeleteView
-from .models import Task
+from .models import Task, House, Membership
 from .forms import HouseRegisterForm
 
 
@@ -36,17 +36,38 @@ class TaskCreateView(CreateView):
         return super().form_valid(form)
 
 
-def createhouse(request):
-    if request.method == 'POST':
-        new_form = HouseRegisterForm(request.POST, instance=request.user)
-        if new_form.is_valid():
-            new_form.save()
-    else:
-        new_form = HouseRegisterForm(instance=request.user)
-    context = {
-        'new_form': new_form
-    }
-    return render(request, 'registration/CreateHouse.html', context)
+class CreateHouseView(CreateView):
+    model = House
+    fields = ['name', 'address']
+    success_url = '/'
+
+    def form_valid(self, form):
+        print(type(self.request.user))
+        form.instance.save()
+        form.instance.members.add(self.request.user)
+        return super().form_valid(form)
+
+
+class JoinHouseView(CreateView):
+    model = Membership
+    fields = ['house']
+    success_url = '/'
+
+    def form_valid(self, form):
+        form.instance.person = self.request.user
+        return super().form_valid(form)
+
+# def createhouse(request):
+#     if request.method == 'POST':
+#         new_form = HouseRegisterForm(request.POST, instance=request.user)
+#         if new_form.is_valid():
+#             new_form.save()
+#     else:
+#         new_form = HouseRegisterForm(instance=request.user)
+#     context = {
+#         'new_form': new_form
+#     }
+#     return render(request, 'registration/CreateHouse.html', context)
 
 
 def joinhouse(request):
