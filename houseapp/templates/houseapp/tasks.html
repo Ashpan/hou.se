@@ -2,14 +2,20 @@
 <article class="media content-section">
   <div class="col-md-8">
     <div>
-      <h1>Tasks</h1>
+      <h1>Tasks
+        <a class="btn btn-secondary btn-sm" style="float: right;margin-top:20px" href="{%url 'task-create'%}">+Task</a>
+      </h1>
+
     </div>
     <ul class="list-group">
+      {% for task in tasks %}
       <li class="list-group-item">
-        Task 1
-        <a class="btn btn-outline-danger" style="float: right;margin-left:10px" href="#">Remove</a>
+        {{task.title}}
+        <a class="btn btn-outline-danger" style="float: right;margin-left:10px"
+          href="{% url 'task-delete' task.id%}">Remove</a>
         <a class="btn btn-outline-primary" style="float: right" href="#">Edit</a>
       </li>
+      {%endfor%}
     </ul>
   </div>
 </article>
