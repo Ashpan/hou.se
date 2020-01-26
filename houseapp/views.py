@@ -38,11 +38,24 @@ class TaskCreateView(CreateView):
 
 def createhouse(request):
     new_form = HouseRegisterForm(instance=request.user)
+<<<<<<< Updated upstream
 
     context = {
         'new_form': new_form,
     }
     return render(request, 'registration/CreateHouse.html')
+
+=======
+    context = {
+        'new_form': new_form
+    }
+    return render(request, 'registration/CreateHouse.html', context)
+
+
+def joinhouse(request):
+
+    return render(request, 'registration/JoinHouse.html')
+>>>>>>> Stashed changes
 
 
 class TaskDeleteView(DeleteView):
