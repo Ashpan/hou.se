@@ -37,9 +37,11 @@
               <p class="nav-item nav-link active" style="border: darkred ">Hi {{ user.username }}!</p>
               {% else %}
               <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-              <p class="nav-item nav-link active" style="border: darkred ">You are not logged in</p>
-              {% endif %}
-              {% endblock %}
+            <a class="nav-item nav-link" href="{% url 'signup' %}">Register</a>
+            <p class="nav-item nav-link active" style="border: darkred ">You are not logged in</p>
+            {% endif %}
+            {% endblock %}
+
 
 
           </div>
