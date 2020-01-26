@@ -1,9 +1,6 @@
-from datetime import date
-
 from django.db import models
-from django.http import HttpResponse
 from django.contrib.auth.models import User
-from django.urls import reverse
+from django.utils import timezone
 
 
 class House(models.Model):
@@ -32,3 +29,12 @@ class Task(models.Model):
         return self.title
 
 
+class Message(models.Model):
+    content = models.CharField(max_length=250)
+    timestamp = models.DateTimeField(timezone.now())
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Notification(models.Model):
+    title = models.CharField(max_length=30)
+    timestamp = models.DateTimeField(timezone.now())

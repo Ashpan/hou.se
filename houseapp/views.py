@@ -1,8 +1,5 @@
-from django.contrib.auth.mixins import UserPassesTestMixin
-from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, CreateView, DeleteView, RedirectView
-from django.views.generic.edit import FormMixin
 
 from .models import Task
 
@@ -35,6 +32,7 @@ class TaskListView(ListView):
     template_name = 'houseapp/home.html'
     context_object_name = 'tasks'
 
+
 class TaskCreateView(CreateView):
     model = Task
     fields = ['title', 'due_date', 'user']
@@ -42,6 +40,7 @@ class TaskCreateView(CreateView):
 
     def form_valid(self, form):
         return super().form_valid(form)
+
 
 class TaskCompleteView(RedirectView):
     pattern_name = 'home'
