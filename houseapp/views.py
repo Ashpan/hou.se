@@ -71,6 +71,10 @@ def createhouse(request):
 def joinhouse(request):
     return render(request, 'registration/JoinHouse.html')
 
+def createorjoin(request):
+    return render(request, 'registration/createorjoin.html')
+
+
 def splash(request):
     if request.user.is_authenticated:
         return render(request, 'houseapp/home.html')
@@ -106,6 +110,8 @@ class JoinHouseView(CreateView):
     fields = ['house']
     success_url = '/'
 
+
+
     def post(self, request):
         inv = request.POST['invite-code-input']
         house = House.objects.get(invite_code=inv)
@@ -114,6 +120,7 @@ class JoinHouseView(CreateView):
         mem.save()
 
         return HttpResponseRedirect('/')
+
 
 # def form_valid(self, form):
 #     if form.request == 'POST':

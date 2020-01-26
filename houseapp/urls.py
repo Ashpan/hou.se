@@ -16,5 +16,6 @@ urlpatterns = [
     path('splash/', views.splash,name="splash"),
     path('tasks/<int:pk>/delete/', TaskDeleteView.as_view(), name="task-delete"),
     path('house/create/', CreateHouseView.as_view(), name='house-create'),
-    path('house/join/', JoinHouseView.as_view(), name='house-join')
+    path('house/join/', JoinHouseView.as_view(), name='house-join'),
+    path('createorjoin/', views.createorjoin,name='create-or-join'),
 ]
