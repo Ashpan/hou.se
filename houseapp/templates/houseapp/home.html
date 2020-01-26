@@ -1,6 +1,7 @@
 {% extends "houseapp/base.html" %}
 {% block content %}
     <main role="main" class="container">
+
         <div class="row">
             <div class="col-md-8">
                 <div class="content-section">
@@ -51,40 +52,35 @@
                     </table>
 
                 </div>
-            </div>
-        </div>
+                <div class="content-section">
+                    <div class="column">
+                        <div>
+                            <h2>Notifications
+                                <a class="btn btn-outline-primary" style="float: right" href="#">Edit</a>
+                            </h2>
+                        </div>
+                        <div>
+                            <ul class="list-group">
+                                <li class="list-group-item">Not: 1</li>
+                            </ul>
 
-        <div class="content-section">
-            <div class="column">
-                <div>
-                    <h2>Notifications
-                        <a class="btn btn-outline-primary" style="float: right" href="#">Edit</a>
-                    </h2>
+                        </div>
+                    </div>
                 </div>
-                <div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="content-section">
+                    <h3>Messages</h3>
+                    <p class='text-muted'>House messages.
                     <ul class="list-group">
-                        <li class="list-group-item">Not: 1</li>
-                    </ul>
 
+                    </ul>
+                    </p>
                 </div>
             </div>
         </div>
 
-
-        </div>
-
-        <div class="col-md-4">
-            <div class="content-section">
-                <h3>Messages</h3>
-                <p class='text-muted'>House messages.
-                <ul class="list-group">
-
-                </ul>
-                </p>
-            </div>
-        </div>
-        </div>
     </main>
-
-
 {% endblock content %}
