@@ -2,8 +2,10 @@
 <article class="media content-section">
   <div class="col-md-8">
     <div>
-      <h1>Tasks</h1>
-      <a class="btn btn-outline-primary" href="{%url 'task-create'%}">New Task</a>
+      <h1>Tasks
+        <a class="btn btn-secondary btn-sm" style="float: right;margin-top:20px" href="{%url 'task-create'%}">+Task</a>
+      </h1>
+
     </div>
     <ul class="list-group">
       {% for task in tasks %}
