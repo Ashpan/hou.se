@@ -5,7 +5,7 @@ from .models import Task
 
 
 def house(request):
-    return render(request, 'houseapp/house.html')
+    return render(request, 'houseapp/house_settings.html')
 
 
 def tasks(request):
