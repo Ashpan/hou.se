@@ -13,13 +13,11 @@
         {{task.title}}
         <a class="btn btn-outline-danger" style="float: right;margin-left:10px"
           href="{% url 'task-delete' task.id%}">Remove</a>
-        <a class="btn btn-outline-primary" style="float: right" href="#">Edit</a>
-      </li>
-      {%endfor%}
+        {%endfor%}
     </ul>
   </div>
 </article>
-<article class="media content-section">
+<article class=" media content-section">
   <div class="col-md-8">
     <div>
       <h1>Notifications</h1>
