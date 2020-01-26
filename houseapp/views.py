@@ -38,11 +38,11 @@ class TaskCreateView(CreateView):
 
 def createhouse(request):
     if request.method == 'POST':
-        new_form = HouseRegisterForm(request.POST, instance=request.user)
+        new_form = HouseRegisterForm(request.POST)
         if new_form.is_valid():
             new_form.save()
     else:
-        new_form = HouseRegisterForm(instance=request.user)
+        new_form = HouseRegisterForm(request.user)
     context = {
         'new_form': new_form
     }
