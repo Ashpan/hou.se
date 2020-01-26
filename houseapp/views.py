@@ -1,7 +1,18 @@
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.http import HttpResponse
-from django.views.generic import ListView, CreateView, DeleteView
+from django.views.generic import ListView, CreateView, DeleteView, RedirectView
+from django.views.generic.edit import FormMixin
+
 from .models import Task
+
+
+def home(request):
+    context = {
+        'tasks': Task.objects.all(),
+    }
+
+    return render(request, 'houseapp/home.html', context)
 
 
 def house(request):
@@ -24,15 +35,23 @@ class TaskListView(ListView):
     template_name = 'houseapp/home.html'
     context_object_name = 'tasks'
 
-
 class TaskCreateView(CreateView):
     model = Task
     fields = ['title', 'due_date', 'user']
     success_url = '/'
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
         return super().form_valid(form)
+
+class TaskCompleteView(RedirectView):
+    pattern_name = 'home'
+
+    def get_redirect_url(self, *args, **kwargs):
+        task = get_object_or_404(Task, pk=kwargs['pk'])
+        task.completed = True
+        task.save(update_fields=['completed'])
+        print("Completed", task)
+        return super().get_redirect_url(*args)
 
 
 class TaskDeleteView(DeleteView):

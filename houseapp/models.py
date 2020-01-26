@@ -10,7 +10,7 @@ class House(models.Model):
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
     invite_code = models.CharField(max_length=6)
-    members = models.ManyToManyField(User)
+    members = models.ManyToManyField(User, blank=True)
 
 
 class Membership(models.Model):
