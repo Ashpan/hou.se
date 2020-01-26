@@ -5,10 +5,19 @@ def add_variable_to_context(request):
     name = 'House Name'
 
     print(request.user)
-
-    if request.user.is_authenticated:
-        name = Membership.objects.get(person=request.user).house
-
+    try:
+        if request.user.is_authenticated:
+            name = Membership.objects.get(person=request.user).house
+            members = Membership.objects.get(
+                person=request.user).house.members.all()
+            address = Membership.objects.get(
+                person=request.user).house.address
+    except Exception:
+        name = ''
+        members = ['']
+        address = ''
     return {
-        'housename': name
+        'housename': name,
+        'members': members,
+        'address': address
     }
