@@ -38,22 +38,15 @@
 
                                 <td>
                                     <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                        <label class="custom-control-label" for="customCheck3"></label>
+                                        <input type="checkbox" class="custom-control-input"
+                                               id="{{ task.title }}" name="{{ task.title }}">
+                                        <label class="custom-control-label" for="{{ task.title }}"></label>
                                     </div>
-                                    
                                 </td>
 
                             </tr>
                         {% endfor %}
 
-                        <tr>
-                            <th scope="row">
-                                Shovel Snow
-                            </th>
-                            <td>Will</td>
-
-                        </tr>
                         </tbody>
                     </table>
 
