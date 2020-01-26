@@ -34,11 +34,27 @@ def tasks(request):
 def calendar(request):
     return render(request, 'houseapp/calendar.html')
 
+def home(request):
+    context = {
+        'tasks': Task.objects.all()
+    }
+
+    if request.user.is_authenticated:
+        return render(request, 'houseapp/home.html', context)
+    else:
+        return render(request, 'houseapp/splash.html')
 
 class TaskListView(ListView):
     model = Task
     template_name = 'houseapp/home.html'
     context_object_name = 'tasks'
+
+    def get(self, request, **kwargs):
+        if request.user.is_authenticated:
+            return HttpResponseRedirect('')
+        else:
+            return HttpResponseRedirect('splash')
+
 
 
 class TaskCreateView(CreateView):
@@ -55,6 +71,12 @@ def createhouse(request):
 def joinhouse(request):
     return render(request, 'registration/JoinHouse.html')
 
+def splash(request):
+    if request.user.is_authenticated:
+        return render(request, 'houseapp/home.html')
+
+    return render(request, 'houseapp/splash.html')
+  
 class TaskCompleteView(RedirectView):
     pattern_name = 'home'
 
@@ -64,7 +86,6 @@ class TaskCompleteView(RedirectView):
         task.save(update_fields=['completed'])
         print("Completed", task)
         return super().get_redirect_url(*args)
-
 
 class TaskDeleteView(DeleteView):
     model = Task

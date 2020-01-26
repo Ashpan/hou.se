@@ -10,6 +10,7 @@
             <input class="form-control" id="InputHouseID">
             <small class="form-text text-muted">If a house exists the ID is under "House Settings"</small>
         </div>
+
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="Submit" class="btn btn-primary">
