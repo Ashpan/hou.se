@@ -1,3 +1,5 @@
+{% load static %}
+
 body {
   background: #fafafa;
   color: #333333;
@@ -89,3 +91,20 @@ a.article-title:hover {
   font-size: 2.5rem;
 }
 
+.splashbg{
+  background-image: url("splash.jpg");
+  background-size: cover;
+}
+
+.buttonsettings{
+  text-align: center;
+
+}
+
+@media only screen and (max-width: 600px) {
+  .splashbg{
+    background-size: auto 600%;
+    opacity: 0.5;
+    background-image: url("splash.jpg");
+  }
+}

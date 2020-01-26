@@ -19,7 +19,7 @@
   <title>Home</title>
 </head>
 
-<body style="background-image: url({% static 'houseapp/bg.jpg' %}) ">
+<body style="background-image: url({% static 'houseapp/bg.jpg' %});   background-repeat: no-repeat; background-attachment: fixed; ">
   <header class="site-header">
     <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
       <div class="container">
@@ -37,18 +37,14 @@
             <a class="nav-item nav-link" href="{% url 'house-settings'%}">House Settings</a>
             {%  block user %}
             {% if user.is_authenticated %}
-<<<<<<< Updated upstream
-            <p><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></p>
-            <p class="nav-item nav-link active" style="color: #373638">Hi {{ user.username }}!</p>
-            {% else %}
-=======
+
             <a class="nav-item nav-link" href="{% url 'house-create'%}">Create House</a>
             <a class="nav-item nav-link" href="{% url 'house-settings'%}">House Settings</a>
             <p><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></p>
             <p class="nav-item nav-link active" style="color: #373638">Hi {{ user.username }}!</p>
             {% else %}
 
->>>>>>> Stashed changes
+
             <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
             <a class="nav-item nav-link" href="{% url 'signup' %}">Register</a>
             <p class="nav-item nav-link active" style="border: darkred ">You are not logged in</p>
