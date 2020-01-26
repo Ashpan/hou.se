@@ -1,24 +1,7 @@
-from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, CreateView, DeleteView, RedirectView
-
-from .models import Task
-from .forms import JoinForm
 from .models import Task, House, Membership
-from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
-from django.http import HttpResponse
 from django.views.generic import ListView, CreateView, DeleteView, RedirectView
-from django.views.generic.edit import FormMixin
 from datetime import date
-
-
-def home(request):
-    context = {
-        'tasks': Task.objects.all(),
-    }
-
-    return render(request, 'houseapp/home.html', context)
-
 
 def house(request):
     return render(request, 'houseapp/house_settings.html')
@@ -34,15 +17,22 @@ def tasks(request):
 def calendar(request):
     return render(request, 'houseapp/calendar.html')
 
-def home(request):
-    context = {
-        'tasks': Task.objects.all()
-    }
 
-    if request.user.is_authenticated:
-        return render(request, 'houseapp/home.html', context)
-    else:
+def home(request):
+    if not request.user.is_authenticated:
         return render(request, 'houseapp/splash.html')
+
+    try:
+        user_house = Membership.objects.get(person=request.user).house
+
+        context = {
+            'tasks': Task.objects.filter(user__in=user_house.members.all())
+        }
+
+        return render(request, 'houseapp/home.html', context)
+    except Exception:
+        return render(request, 'houseapp/membership_form.html')
+
 
 class TaskListView(ListView):
     model = Task

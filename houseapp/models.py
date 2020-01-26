@@ -34,7 +34,3 @@ class Message(models.Model):
     timestamp = models.DateTimeField(timezone.now())
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
-
-class Notification(models.Model):
-    title = models.CharField(max_length=30)
-    timestamp = models.DateTimeField(timezone.now())
