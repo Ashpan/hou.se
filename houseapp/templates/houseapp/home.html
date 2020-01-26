@@ -27,9 +27,9 @@
                             <tbody>
                             {% for task in tasks %}
                                 <tr>
-                                    <td class="mr-2" href="#">{{ task.user }}</td>
+                                    <td class="mr-2" >{{ task.user }}</td>
                                     <td class="text-muted">{{ task.due_date|date:"F d, Y" }}</td>
-                                    <td><a class="article-title" href="#">{{ task.title }}</a></td>
+                                    <td><a class="article-title" >{{ task.title }}</a></td>
 
                                     <td>
                                         <div class="custom-control custom-checkbox">
@@ -69,11 +69,18 @@
             <div class="col-md-4">
                 <div class="content-section">
                     <h3>Messages</h3>
-                    <p class='text-muted'>House messages.
+
+
                     <ul class="list-group">
 
+                       {# {% for message in messages reversed%} #}
+                            {#  {% if message == 20 %} #}
+                                {# {% break %} #}
+                            {# {% endif %} #}
+                            {# <p>{{ message }}</p> #}
+                        {# {% endfor %} #}
+
                     </ul>
-                    </p>
                 </div>
             </div>
         </div>
