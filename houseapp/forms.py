@@ -4,6 +4,6 @@ from django.forms import ModelForm
 
 
 class HouseRegisterForm(ModelForm):
-    class _Meta:
+    class Meta:
         model = House
         fields = ['name', 'address']
