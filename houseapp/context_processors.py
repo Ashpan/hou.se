@@ -3,8 +3,19 @@ from houseapp.models import Membership
 
 def add_variable_to_context(request):
     name = 'House Name'
+    members = ['placeholder']
+    address = 'placeholder'
 
-    print(request.user)
+    # try:
+    #     if request.user.is_authenticated:
+    #         name = Membership.objects.get(person=request.user).house
+    # except Exception:
+    #     name = 'No House'
+
+    # return {
+    #     'housename': name
+    # print(request.user)
+    
     try:
         if request.user.is_authenticated:
             name = Membership.objects.get(person=request.user).house
