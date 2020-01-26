@@ -1,7 +1,23 @@
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, CreateView, DeleteView, RedirectView
+
+from .models import Task
+from .forms import JoinForm
+from .models import Task, House, Membership
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
 from django.http import HttpResponse
-from django.views.generic import ListView, CreateView, DeleteView
-from .models import Task
+from django.views.generic import ListView, CreateView, DeleteView, RedirectView
+from django.views.generic.edit import FormMixin
+from datetime import date
+
+
+def home(request):
+    context = {
+        'tasks': Task.objects.all(),
+    }
+
+    return render(request, 'houseapp/home.html', context)
 
 
 def house(request):
@@ -47,7 +63,6 @@ class TaskCreateView(CreateView):
     success_url = '/'
 
     def form_valid(self, form):
-        form.instance.author = self.request.user
         return super().form_valid(form)
 
 def createhouse(request):
@@ -61,7 +76,46 @@ def splash(request):
         return render(request, 'houseapp/home.html')
 
     return render(request, 'houseapp/splash.html')
+  
+class TaskCompleteView(RedirectView):
+    pattern_name = 'home'
+
+    def get_redirect_url(self, *args, **kwargs):
+        task = get_object_or_404(Task, pk=kwargs['pk'])
+        task.completed = True
+        task.save(update_fields=['completed'])
+        print("Completed", task)
+        return super().get_redirect_url(*args)
 
 class TaskDeleteView(DeleteView):
     model = Task
     success_url = "/"
+
+
+class CreateHouseView(CreateView):
+    model = House
+    fields = ['name', 'address', 'invite_code']
+    success_url = '/'
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+
+class JoinHouseView(CreateView):
+    model = Membership
+    fields = ['house']
+    success_url = '/'
+
+    def post(self, request):
+        inv = request.POST['invite-code-input']
+        house = House.objects.get(invite_code=inv)
+        mem = Membership(person=request.user, house=house,
+                         date_joined=date.today())
+        mem.save()
+
+        return HttpResponseRedirect('/')
+
+# def form_valid(self, form):
+#     if form.request == 'POST':
+#         print(form.request.POST)
+#     return super().form_valid(form)

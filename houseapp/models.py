@@ -1,21 +1,27 @@
-from datetime import date
-
 from django.db import models
-from django.http import HttpResponse
 from django.contrib.auth.models import User
-from django.urls import reverse
+from django.utils import timezone
 
 
 class House(models.Model):
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
     invite_code = models.CharField(max_length=6)
-    members = models.ForeignKey(User, on_delete=models.CASCADE)
+    members = models.ManyToManyField(User, through='Membership')
+
+    def __str__(self):
+        return self.name
+
+
+class Membership(models.Model):
+    person = models.ForeignKey(User, on_delete=models.CASCADE)
+    house = models.ForeignKey(House, on_delete=models.CASCADE)
+    date_joined = models.DateField()
 
 
 class Task(models.Model):
     title = models.CharField(max_length=30)
-    due_date = models.DateField(default=date.today())
+    due_date = models.DateField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     completed = models.BooleanField(default=False)
 
@@ -23,3 +29,12 @@ class Task(models.Model):
         return self.title
 
 
+class Message(models.Model):
+    content = models.CharField(max_length=250)
+    timestamp = models.DateTimeField(timezone.now())
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
+class Notification(models.Model):
+    title = models.CharField(max_length=30)
+    timestamp = models.DateTimeField(timezone.now())

@@ -1,8 +1,10 @@
 from django import forms
-from .models import House
+from django.forms.widgets import TextInput
+from .models import Membership
 
 
-class HouseRegisterForm(forms.ModelForm):
+class JoinForm(forms.ModelForm):
+
     class Meta:
-        model = House
-        fields = ['name', 'address']
+        model = Membership
+        fields = ('house',)
