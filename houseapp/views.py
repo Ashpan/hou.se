@@ -1,3 +1,7 @@
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, CreateView, DeleteView, RedirectView
+
+from .models import Task
 from .forms import JoinForm
 from .models import Task, House, Membership
 from django.contrib.auth.mixins import UserPassesTestMixin
