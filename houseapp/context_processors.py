@@ -3,6 +3,8 @@ from houseapp.models import Membership
 
 def add_variable_to_context(request):
     name = 'House Name'
+    members = ['placeholder']
+    address = 'placeholder'
 
     # try:
     #     if request.user.is_authenticated:
