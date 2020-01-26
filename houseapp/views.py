@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, CreateView, DeleteView, RedirectView
 
-from .models import Task
+from .houseinfo import House1
 from .forms import JoinForm
 from .models import Task, House, Membership
 from django.contrib.auth.mixins import UserPassesTestMixin
@@ -14,14 +14,17 @@ from datetime import date
 
 def home(request):
     context = {
-        'tasks': Task.objects.all(),
+        'tasks': Task.objects.all()
     }
 
     return render(request, 'houseapp/home.html', context)
 
 
 def house(request):
-    return render(request, 'houseapp/house_settings.html')
+    content = {
+        'house': House1
+    }
+    return render(request, 'houseapp/house_settings.html', content)
 
 
 def tasks(request):
@@ -34,6 +37,7 @@ def tasks(request):
 def calendar(request):
     return render(request, 'houseapp/calendar.html')
 
+
 def home(request):
     context = {
         'tasks': Task.objects.all()
@@ -43,6 +47,7 @@ def home(request):
         return render(request, 'houseapp/home.html', context)
     else:
         return render(request, 'houseapp/splash.html')
+
 
 class TaskListView(ListView):
     model = Task
@@ -56,7 +61,6 @@ class TaskListView(ListView):
             return HttpResponseRedirect('splash')
 
 
-
 class TaskCreateView(CreateView):
     model = Task
     fields = ['title', 'due_date', 'user']
@@ -65,18 +69,22 @@ class TaskCreateView(CreateView):
     def form_valid(self, form):
         return super().form_valid(form)
 
+
 def createhouse(request):
     return render(request, 'registration/CreateHouse.html')
 
+
 def joinhouse(request):
     return render(request, 'registration/JoinHouse.html')
+
 
 def splash(request):
     if request.user.is_authenticated:
         return render(request, 'houseapp/home.html')
 
     return render(request, 'houseapp/splash.html')
-  
+
+
 class TaskCompleteView(RedirectView):
     pattern_name = 'home'
 
@@ -86,6 +94,7 @@ class TaskCompleteView(RedirectView):
         task.save(update_fields=['completed'])
         print("Completed", task)
         return super().get_redirect_url(*args)
+
 
 class TaskDeleteView(DeleteView):
     model = Task
