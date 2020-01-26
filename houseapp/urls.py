@@ -9,6 +9,6 @@ urlpatterns = [
     path('tasks/new/', TaskCreateView.as_view(), name='task-create'),
     path('calendar/', views.calendar, name='calendar'),
     path('tasks/<int:pk>/delete', TaskDeleteView.as_view(), name="task-delete"),
-    path('createhouse/', views.createhouse, name='createhouse'),
-    path('joinhouse/', views.joinhouse,name="joinhouse"),
+    path('house/create', views.createhouse, name='house-create'),
+    path('house/join', views.joinhouse, name="house-join"),
 ]
